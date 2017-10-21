@@ -24,4 +24,9 @@ namespace fp {
   static F<B> operator %(function <B(A)> f, F<A> v) {
     return Functor<F>::fmap(f)(v);
   }
+
+  template <template <typename...> class F, typename A, typename B>
+  static F<B> operator ^(F<A> v, function <B(A)> f) {
+    return Functor<F>::fmap(f)(v);
+  }
 }

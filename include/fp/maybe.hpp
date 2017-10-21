@@ -40,6 +40,17 @@ namespace fp {
     }
   }
 
+  template <typename T>
+  bool operator ==(const Maybe<T> m1, const Maybe<T> m2) {
+    if (m1.isNothing() && m2.isNothing()) {
+      return true;
+    } else if (m1.isJust() && m2.isJust()) {
+      return m1.fromJust() == m2.fromJust();
+    } else {
+      return false;
+    }
+  }
+
   template <>
   struct Functor<Maybe> {
     template <typename A, typename B>
