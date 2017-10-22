@@ -33,6 +33,7 @@ TEST_CASE("Test maybe functor") {
 
   REQUIRE((just_str ^ length) == (Maybe<int>(8)));
   REQUIRE((nothing ^ length).isNothing());
+  REQUIRE((nothing ^ length) == Maybe<int>());
   REQUIRE((just_json ^ get_server_time) == (Maybe<long>(1499827319559)));
   REQUIRE((just_json ^ get_server_time2) == Maybe<long>(1499827319559));
 }
