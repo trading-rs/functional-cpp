@@ -4,6 +4,7 @@ project(functional-cpp)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
 set(CATCH_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libs/catch/single_include)
+set(JSON_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libs/json/src)
 set(FP_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(FP_INCLUDE_DIR ${FP_INCLUDE_DIR} PARENT_SCOPE)
 
@@ -24,6 +25,7 @@ fp_option(BUILD_FP_TESTS "Set to ON to build fp tests." ON)
 
 include_directories(
   ${CATCH_INCLUDE_DIR}
+  ${JSON_INCLUDE_DIR}
   ${FP_INCLUDE_DIR}
   )
 
