@@ -31,6 +31,9 @@ namespace fp {
   };
 
   template <typename T>
+  Maybe<T> Nothing = Maybe<T>();
+
+  template <typename T>
   ostream& operator<<(ostream& s, const Maybe<T> m)
   {
     if (m.isJust()) {
