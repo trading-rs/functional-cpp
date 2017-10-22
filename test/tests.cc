@@ -19,6 +19,10 @@ function<long(json)> get_server_time = [](const auto &j) {
 function<long(json)> get_server_time2 = [](const json &j) {
   return j["serverTime"].get<long>();
 };
+function<Maybe<json>(json)> print_json = [](const auto &j) {
+  cout << j.dump(2) << endl;
+  return Nothing<json>;
+};
 
 TEST_CASE("Test function composition") {
   REQUIRE(compose(length, square)("cleantha") == 64);
@@ -35,6 +39,8 @@ TEST_CASE("Test maybe functor") {
   REQUIRE((nothing ^ length).isNothing());
   REQUIRE((nothing ^ length) == Maybe<int>());
   REQUIRE((nothing ^ length) == Nothing<int>);
+  REQUIRE((just_json >>= print_json) == Nothing<json>);
+  REQUIRE((Nothing<json> >>= print_json) == Nothing<json>);
   REQUIRE((just_json ^ get_server_time) == (Maybe<long>(1499827319559)));
   REQUIRE((just_json ^ get_server_time2) == Maybe<long>(1499827319559));
 }

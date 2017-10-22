@@ -20,6 +20,9 @@ int main(int argc, char** argv) {
   function<long(json)> get_server_time2 = [](const json &j) {
     return j["serverTime"].get<long>();
   };
+  function<Maybe<long>(json)> get_server_time_maybe = [](const auto &j) {
+    return Maybe<long>(j["serverTime"].template get<long>());
+  };
 
   cout << compose(length, square)("cleantha") << endl;
 
@@ -38,4 +41,6 @@ int main(int argc, char** argv) {
 
   cout << (just_json ^ get_server_time) << endl;
   cout << (just_json ^ get_server_time2) << endl;
+
+  cout << (just_json >>= get_server_time_maybe) << endl;
 }
