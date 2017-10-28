@@ -44,3 +44,19 @@ TEST_CASE("Test maybe functor") {
   REQUIRE((just_json ^ get_server_time) == (Maybe<long>(1499827319559)));
   REQUIRE((just_json ^ get_server_time2) == Maybe<long>(1499827319559));
 }
+
+TEST_CASE("Test fromMaybe member function") {
+  Maybe<string> just_str("cleantha");
+  Maybe<string> nothing;
+
+  REQUIRE(just_str.fromMaybe("33") == "cleantha");
+  REQUIRE(nothing.fromMaybe("33") == "33");
+}
+
+TEST_CASE("Test maybe static function") {
+  Maybe<string> just_str("cleantha");
+  Maybe<string> nothing;
+
+  REQUIRE(maybe(3, length, just_str) == 8);
+  REQUIRE(maybe(3, length, nothing) == 3);
+}

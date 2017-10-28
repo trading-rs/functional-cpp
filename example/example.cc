@@ -12,7 +12,7 @@ using namespace std;
 
 int main(int argc, char** argv) {
   function<int(string)> length = [](string s){ return s.size(); };
-  function<int(int)> square = [](int i) { return i*i; };
+  function<int(int)> square = [](int i) { return i * i; };
   function<long(json)> get_server_time = [](const auto &j) {
     map<string, long> m = j;
     return j["serverTime"];

@@ -20,6 +20,14 @@ namespace fp {
       }
     }
 
+    T fromMaybe(T default_val) const {
+      if (isJust()) {
+        return _value;
+      } else {
+        return default_val;
+      }
+    }
+
     bool isJust() const { return !_empty; }
     bool isNothing() const { return _empty; }
 
@@ -51,6 +59,15 @@ namespace fp {
       return m1.fromJust() == m2.fromJust();
     } else {
       return false;
+    }
+  }
+
+  template <typename A, typename B>
+  static B maybe(B b, function<B(A)> f, Maybe<A> v) {
+    if (v.isJust()) {
+      return f(v.fromJust());
+    } else {
+      return b;
     }
   }
 
