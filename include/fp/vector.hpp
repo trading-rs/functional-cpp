@@ -1,4 +1,5 @@
 #pragma once
+
 #include "functor.hpp"
 #include "monad.hpp"
 using namespace fp;
