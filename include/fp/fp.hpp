@@ -5,3 +5,4 @@
 #include "monad.hpp"
 #include "maybe.hpp"
 #include "vector.hpp"
+#include "either.hpp"
